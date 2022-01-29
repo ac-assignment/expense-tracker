@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "baseUrl": ".",
+    "paths": {
+      "#configs/*": ["configs/*"],
+      "#middleware/*": ["./middleware/*"],
+      "#models/*": ["./models/*"],
+      "#routes/*": ["routers/*"],
+      "#views/*": ["routers/*"],
+    }
+  }
+}
