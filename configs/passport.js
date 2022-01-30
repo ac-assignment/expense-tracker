@@ -12,12 +12,23 @@ export default (app) => {
   passport.use(new LocalStrategy({
       usernameField: 'email',
       passwordField: 'password',
+      passReqToCallback: true
     },
     async (req, email, password, done) => {
       try {
-        
-      } catch (error) {
-        
+        const user = await User.findOne({ email })
+        if (!user) {
+          req.flash('error', '此信箱尚未註冊')
+          return done(null, false)
+        }
+        const isMatch = await bcrypt.compare(password, user.password)
+        if (!isMatch) {
+          req.flash('error', '信箱或密碼錯誤')
+          return done(null, false)
+        }
+        return done(null, user)
+      } catch (err) {
+        return done(err, false)
       }
     }
   ))
@@ -28,7 +39,7 @@ export default (app) => {
   })
   passport.deserializeUser(async (id, done) => {
     try {
-      const user = await User.findById(id)
+      const user = await User.findById(id).lean()
       done(null, user)
     } catch (err) {
       done(err, false)

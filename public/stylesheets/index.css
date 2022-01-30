@@ -1,0 +1,30 @@
+ul.allRecord li {
+  position: relative;
+  display: flex;
+  border: none;
+}
+ul.allRecord li:nth-child(odd) {
+  background-color: #f3f3f3;
+}
+ul.allRecord .categoryIcon {
+  display: flex;
+  align-items: center;
+  margin-right: 13px;
+  color: rgb(159, 159, 255);
+}
+ul.allRecord .amount {
+  align-self: center;
+  margin-left: auto;
+}
+ul.allRecord .btn {
+  position: absolute;
+  z-index: 99;
+  top: 50%;
+  transform: translateY(-50%);
+}
+ul.allRecord .buttonBox .btn:nth-child(1) {
+  right: -95px;
+}
+ul.allRecord .buttonBox .btn:nth-child(2) {
+  right: -163px;
+}
