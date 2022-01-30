@@ -1,11 +1,11 @@
 <link rel="stylesheet" href="/stylesheets/index.css">
-<div id="index" class="container">
-  <div class="row mt-5">
+<div id="index" class="container mt-5">
+  <div class="row">
     <div class="col-6 m-auto">
       <div class="card">
         <div class="card-body">
-          <select class="form-control" id="exampleFormControlSelect1">
-            <option selected>類別</option>
+          <select class="form-select" id="categorySelect">
+            <option selected>請選擇</option>
             <option value="1">家居物業</option>
             <option value="2">交通出行</option>
             <option value="3">休閒娛樂</option>
@@ -17,6 +17,9 @@
             <div class="display-4">12300</div>
           </div>
           <ul class="allRecord list-group mt-2">
+            {{!-- {{#each recordList}}
+            
+            {{/each}} --}}
             <li class="list-group-item">
               <div class="categoryIcon">
                 <i class="fas fa-home fa-2x"></i>
@@ -35,7 +38,7 @@
         </div>
       </div>
       <div class="row justify-content-center mt-3">
-        <a class="btn btn-primary w-50" href="#">新增支出</a>
+        <a class="btn btn-primary w-50" href="/record/create">新增支出</a>
       </div>
     </div>
   </div>

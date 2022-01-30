@@ -5,7 +5,8 @@ const categorySchema = new Schema({
   _id: Number,
   name: {
     type: String,
-    required: false
+    required: false,
+    unique: true
   }
 })
 

@@ -2,8 +2,8 @@ import express from 'express'
 import Record from '#models/record.js'
 const router = express.Router()
 
-router.get('', (req, res) => {
-  
+router.get('/create', (req, res) => {
+  res.render('create')
 })
 
 export default router

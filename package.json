@@ -7,7 +7,9 @@
   "scripts": {
     "start": "node -r dotenv/config app.js",
     "dev": "nodemon -r dotenv/config app.js",
-    "seed": "node -r dotenv/config models/seeders/categorySeeder.js && node -r dotenv/config models/seeders/recordSeeder.js"
+    "seed": "node -r dotenv/config models/seeders/categorySeeder.js && node -r dotenv/config models/seeders/recordSeeder.js",
+    "seed-category": "node -r dotenv/config models/seeders/categorySeeder.js",
+    "seed-record": "node -r dotenv/config models/seeders/recordSeeder.js"
   },
   "imports": {
     "#configs/*": "./configs/*",

@@ -6,7 +6,7 @@ import home from './modules/home.js'
 
 const router = express.Router()
 
-router.use('/record', authenticator, record)
+router.use('/record', /* authenticator,  */record)
 router.use('/user', user)
 router.use('/', authenticator, home)
 

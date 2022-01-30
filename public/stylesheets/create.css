@@ -1,0 +1,11 @@
+form .formGroup {
+  justify-content: center;
+}
+form .formGroup label {
+  padding: 7px 12px;
+}
+form input[type=number]::-webkit-inner-spin-button, 
+form input[type=number]::-webkit-outer-spin-button {
+  /* opacity: 0; */
+  display: none;
+}

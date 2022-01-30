@@ -1,24 +1,26 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-md-6 m-auto">
+    <div class="col-md-5 m-auto">
       <div class="card">
         <div class="card-body">
-          <h1 class="text-center mt-3">Login</h1>
+          <h1 class="text-center mt-3">登入</h1>
           {{> message}}
           <form action="/user/login" method="POST">
-            <div class="form-group">
-              <label for="email">Email</label>
+            <div class="mb-3">
+              <label for="email" class="form-label">信箱</label>
               <input id="email" class="form-control" type="email" name="email" placeholder="Enter Email">
             </div>
-            <div class="form-group">
-              <label for="password">Password</label>
+            <div class="mb-3">
+              <label for="password" class="form-label">密碼</label>
               <input id="password" class="form-control" type="password" name="password" placeholder="Enter Password">
             </div>
-            <button class="btn btn-secondary btn-block" type="submit">Login</button>
-            <a href="/auth/google" class="btn btn-danger btn-block">Google</a>
+            <div class="d-grid gap-2">
+              <button class="btn btn-secondary btn-block" type="submit">登入</button>
+              <a class="btn btn-danger btn-block" href="/auth/google">Google</a>
+            </div>
           </form>
-          <p class="lead mt-4">
-            No Account? <a href="/user/register">Register</a>
+          <p class="mt-4">
+            還沒有帳號嗎? <a href="/user/register">註冊</a>
           </p>
         </div>
       </div>

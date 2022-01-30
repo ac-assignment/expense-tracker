@@ -8,7 +8,7 @@ export default (app) => {
   //初始化
   app.use(passport.initialize())
   app.use(passport.session())
-  //設定登入策略
+  //一般登入
   passport.use(new LocalStrategy({
       usernameField: 'email',
       passwordField: 'password',
@@ -32,7 +32,7 @@ export default (app) => {
       }
     }
   ))
-  
+  //Google登入
   //序列化/反序列化
   passport.serializeUser((user, done) => {
     done(null, user._id)

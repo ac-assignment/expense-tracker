@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="/stylesheets/create.css">
+<div id="create" class="container mt-5">
+  <div class="row">
+    <div class="col-6 m-auto">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="text-center mt-2">新增一筆支出</h1>
+          <form action="/record" method="POST" class="mt-4">
+            <div class="formGroup row mb-3">
+              <label for="name" class="col-2 col-form-label"><span class="text-danger">*</span> 名稱︰</label>
+              <div class="col-9">
+                <input type="text" class="form-control" id="name">
+              </div>
+            </div>
+            <div class="formGroup row mb-3">
+              <label for="date" class="col-2 col-form-label"><span class="text-danger">*</span> 日期︰</label>
+              <div class="col-9">
+                <input type="date" class="form-control" id="date">
+              </div>
+            </div>
+            <div class="formGroup row mb-3">
+              <label for="category" class="col-2 col-form-label"><span class="text-danger">*</span> 類別︰</label>
+              <div class="col-9">
+                <select class="form-select" id="categorySelect">
+                  <option selected>請選擇</option>
+                  <option value="1">家居物業</option>
+                  <option value="2">交通出行</option>
+                  <option value="3">休閒娛樂</option>
+                  <option value="4">餐飲食品</option>
+                  <option value="0">其他</option>
+                </select>
+              </div>
+            </div>
+            <div class="formGroup row mb-3">
+              <label for="amount" class="col-2 col-form-label"><span class="text-danger">*</span> 金額︰</label>
+              <div class="col-9">
+                <input type="number" class="form-control" id="amount">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
