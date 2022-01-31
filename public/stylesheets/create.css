@@ -6,6 +6,5 @@ form .formGroup label {
 }
 form input[type=number]::-webkit-inner-spin-button, 
 form input[type=number]::-webkit-outer-spin-button {
-  /* opacity: 0; */
   display: none;
 }

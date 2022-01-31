@@ -16,14 +16,16 @@ export default (app) => {
     },
     async (req, email, password, done) => {
       try {
-        const user = await User.findOne({ email })
+        const user = await User.findOne({ email }).lean()
         if (!user) {
           req.flash('error', '此信箱尚未註冊')
+          req.flash('email', email)
           return done(null, false)
         }
         const isMatch = await bcrypt.compare(password, user.password)
         if (!isMatch) {
           req.flash('error', '信箱或密碼錯誤')
+          req.flash('email', email)
           return done(null, false)
         }
         return done(null, user)

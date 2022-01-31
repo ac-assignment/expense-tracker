@@ -22,9 +22,9 @@ ul.allRecord .btn {
   top: 50%;
   transform: translateY(-50%);
 }
-ul.allRecord .buttonBox .btn:nth-child(1) {
+ul.allRecord .buttonBox form:nth-child(1) .btn {
   right: -95px;
 }
-ul.allRecord .buttonBox .btn:nth-child(2) {
+ul.allRecord .buttonBox form:nth-child(2) .btn {
   right: -163px;
 }

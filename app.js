@@ -1,5 +1,6 @@
 import express from 'express'
 import session from 'express-session'
+import methodOverride from 'method-override'
 import flash from 'connect-flash'
 import viewData from '#middleware/viewData.js'
 import hbs from '#configs/handlebar.js'
@@ -11,6 +12,7 @@ const app = express()
 
 app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
+app.use(methodOverride('_method'))
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(session({

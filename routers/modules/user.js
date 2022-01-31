@@ -5,19 +5,21 @@ import User from '#models/user.js'
 const router = express.Router()
 
 router.get('/login', (req, res) => {
-  return res.render('login')
+  const email = req.flash('email')
+  return res.render('login', { email })
 })
 router.post('/login',
   (req, res, next) => {
     const { email, password } = req.body
     if (!email || !password) {
       req.flash('error', '輸入不完整')
+      req.flash('email', email)
     }
     next()
   },
   passport.authenticate('local', {
     successRedirect: '/',
-    failureRedirect: '/user/login'
+    failureRedirect: '/user/login',
   })
 )
 router.get('/register', (req, res) => {
