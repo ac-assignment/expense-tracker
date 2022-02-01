@@ -2,7 +2,7 @@ import express from 'express'
 import session from 'express-session'
 import methodOverride from 'method-override'
 import flash from 'connect-flash'
-import viewData from '#middleware/viewData.js'
+import { setGlobalViewData } from '#middleware/viewData.js'
 import hbs from '#configs/handlebar.js'
 import usePassport from '#configs/passport.js'
 import router from '#routers/index.js'
@@ -22,7 +22,7 @@ app.use(session({
 }))
 app.use(flash())
 usePassport(app)
-app.use(viewData)
+app.use(setGlobalViewData)
 app.use(router)
 
 const { PORT } = process.env

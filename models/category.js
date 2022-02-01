@@ -5,8 +5,12 @@ const categorySchema = new Schema({
   _id: Number,
   name: {
     type: String,
-    required: false,
+    required: true,
     unique: true
+  },
+  class_name: {
+    type: String,
+    required: true
   }
 })
 

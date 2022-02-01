@@ -8,8 +8,10 @@ ul.allRecord li:nth-child(odd) {
 }
 ul.allRecord .categoryIcon {
   display: flex;
+  justify-content: center;
   align-items: center;
-  margin-right: 13px;
+  margin-right: 5px;
+  width: 48px;
   color: rgb(159, 159, 255);
 }
 ul.allRecord .amount {

@@ -1,33 +1,56 @@
 import express from 'express'
+import { setCategoryList } from '#middleware/viewData.js'
 import Record from '#models/record.js'
-import Category from '#models/category.js'
 const router = express.Router()
 
 /* 新增一筆支出 - 頁面 */
-router.get('/create', async (req, res, next) => {
-  const categoryList = await Category.find().lean()
-  return res.render('create', { categoryList })
+router.get('/create', setCategoryList, async (req, res, next) => {
+  try {
+    return res.render('create')
+  } catch (err) {
+    next(err)
+  }
 })
 /* 新增一筆支出 */
-router.post('/', async (req, res) => {
+router.post('/', async (req, res, next) => {
   const user_id = req.user._id
-  const entity = { ...req.body, user_id }
-  await Record.create(entity)
-  
-  return res.redirect('/')
+  const record = { ...req.body, user_id }
+  try {
+    await Record.create(record)
+    return res.redirect('/')
+  } catch (err) {
+    next(err)
+  }
 })
 /* 編輯支出 - 頁面 */
-router.get('/:id/edit', async (req, res) => {
-  const categoryList = await Category.find().lean()
-  return res.render('edit', { categoryList })
+router.get('/:id/edit', setCategoryList, async (req, res, next) => {
+  const user_id = req.user._id 
+  const _id = req.params.id
+  try {
+    const record = await Record.findOne({ _id, user_id })
+    return res.render('edit', { record })
+  } catch (err) {
+    next(err)
+  }
 })
 /* 編輯支出 */
-router.put('/:id', (req, res) => {
-  
+router.put('/:id', async (req, res, next) => {
+  try {
+    
+  } catch (err) {
+    next(err)
+  }
 })
 /* 刪除一筆支出頁面 */
-router.delete('/:id', (req, res) => {
-  console.log(req.params)
+router.delete('/:id', async (req, res, next) => {
+  const user_id = req.user._id
+  const _id = req.params.id
+  try {
+    await Record.findOneAndDelete({ _id, user_id })
+    res.redirect('/')
+  } catch (err) {
+    next(err)
+  }
 })
 
 export default router
