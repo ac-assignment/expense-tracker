@@ -13,7 +13,8 @@ const recordSchema = new Schema({
   },
   amount: {
     type: Number,
-    required: true
+    required: true,
+    default: 0
   },
   user_id: {
     type: Schema.Types.ObjectId,
@@ -22,7 +23,7 @@ const recordSchema = new Schema({
     index: true
   },
   category_id: {
-    type: Number,
+    type: Schema.Types.ObjectId,
     ref: 'Category',
     required: true
   }

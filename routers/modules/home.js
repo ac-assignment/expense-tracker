@@ -14,11 +14,11 @@ router.get('/', setCategoryList, async (req, res, next) => {
       .lean()
     //日期格式化
     recordList.forEach((record) => {
-      record.date = moment(record.date).format('YYYY-MM-DD')
+      record.date = moment(record.date).format('YYYY/MM/DD')
     })
     const totalAmount = recordList
       .map(record => record.amount)
-      .reduce((previous, current) => previous + current)
+      .reduce((previous, current) => previous + current, 0)
     
     res.render('home', { recordList, totalAmount })
   } catch (err) {

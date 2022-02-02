@@ -1,35 +1,36 @@
 import express from 'express'
 import passport from 'passport'
 import bcrypt from 'bcryptjs'
+import { allowUnAuth } from '#middleware/auth.js'
 import User from '#models/user.js'
 const router = express.Router()
 
-router.get('/login', (req, res) => {
+router.get('/login', allowUnAuth, (req, res) => {
   const email = req.flash('email')
   return res.render('login', { email })
 })
-router.post('/login',
+router.post('/login', allowUnAuth,
   (req, res, next) => {
     const { email, password } = req.body
     if (!email || !password) {
       req.flash('error', '輸入不完整')
       req.flash('email', email)
     }
-    next()
+    return next()
   },
   passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/user/login',
   })
 )
-router.get('/register', (req, res) => {
+router.get('/register', allowUnAuth, (req, res) => {
   return res.render('register')
 })
-router.post('/register',
-  async (req, res) => {
+router.post('/register', allowUnAuth,
+  async (req, res, next) => {
     const { body, body: { name, email, password, confirmPassword } } = req
-    
     const errors = []
+    
     if (!email || !password || !confirmPassword) {
       errors.push({ message: '輸入不完整，請重新檢查。' })
     }
@@ -46,7 +47,6 @@ router.post('/register',
     if (errors.length) {
       return res.render('register', { errors, body })
     }
-    
     try {
       const user = await User.findOne({ email }).lean()
       if (user) {
@@ -57,8 +57,8 @@ router.post('/register',
       const hash = await bcrypt.hash(password, salt)
       await User.create({ name: name.trim(), email, password: hash })
       return res.redirect('/user/login')
-    } catch (error) {
-      console.log(error)
+    } catch (err) {
+      return next(err)
     }
   }
 )

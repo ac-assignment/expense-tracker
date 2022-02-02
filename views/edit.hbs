@@ -5,26 +5,27 @@
       <div class="card">
         <div class="card-body">
           <h1 class="text-center mt-2">修改支出</h1>
-          <form action="/record" method="POST" class="mt-4">
+          {{> message}}
+          <form action="/record/{{record._id}}?_method=PUT" method="POST" class="mt-4">
             <div class="formGroup row mb-3">
               <label for="name" class="col-2 col-form-label"><span class="text-danger">*</span> 名稱︰</label>
               <div class="col-9">
-                <input type="text" id="name" class="form-control" name="name">
+                <input type="text" id="name" class="form-control" name="name" value="{{record.name}}">
               </div>
             </div>
             <div class="formGroup row mb-3">
               <label for="date" class="col-2 col-form-label"><span class="text-danger">*</span> 日期︰</label>
               <div class="col-9">
-                <input type="date" id="date" class="form-control" name="date">
+                <input type="date" id="date" class="form-control" name="date" value="{{record.date}}">
               </div>
             </div>
             <div class="formGroup row mb-3">
               <label for="category" class="col-2 col-form-label"><span class="text-danger">*</span> 類別︰</label>
               <div class="col-9">
                 <select id="category" class="form-select" name="category_id">
-                  <option selected>請選擇</option>
+                  <option value="">請選擇</option>
                   {{#each categoryList}}
-                  <option value="{{this._id}}">{{this.name}}</option>
+                  <option value="{{this._id}}" {{#ifIdEqual this._id ../record.category_id}}selected{{/ifIdEqual}}>{{this.name}}</option>
                   {{/each}}
                 </select>
               </div>
@@ -32,7 +33,7 @@
             <div class="formGroup row mb-3">
               <label for="amount" class="col-2 col-form-label"><span class="text-danger">*</span> 金額︰</label>
               <div class="col-9">
-                <input type="number" id="amount" class="form-control" name="amount">
+                <input type="number" id="amount" class="form-control" name="amount" value="{{record.amount}}">
               </div>
             </div>
             <div class="row justify-content-center mt-3">
