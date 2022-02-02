@@ -14,16 +14,31 @@ router.get('/create', setCategoryList, async (req, res, next) => {
   }
 })
 /* 新增一筆支出 */
-router.post('/', async (req, res, next) => {
-  const user_id = req.user._id
-  const record = { ...req.body, user_id }
-  try {
-    await Record.create(record)
-    return res.redirect('/')
-  } catch (err) {
-    return next(err)
+router.post('/', setCategoryList,
+  async (req, res, next) => {
+    const user_id = req.user._id
+    const { name, date, category_id, amount } = req.body
+    try {
+      if (!name || !date || !category_id || !amount) {
+        req.error = '所有欄位都是必填'
+        return next()
+      }
+      const isExist = await Category.exists({ _id: category_id })
+      if (!isExist) {
+        req.error = '請輸入有效類別'
+        return next()
+      }
+      await Record.create({ ...req.body, user_id })
+      return res.redirect('/')
+    } catch (err) {
+      return next(err)
+    }
+  },
+  /* 顯示錯誤訊息並回填輸入資料 */
+  (req, res, next) => {
+    return res.render('create', { error: req.error, record: req.body })
   }
-})
+)
 /* 編輯支出 - 頁面 */
 router.get('/:id/edit', setCategoryList, async (req, res, next) => {
   const user_id = req.user._id 
