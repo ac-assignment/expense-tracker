@@ -12,6 +12,7 @@ const SEED_CATEGORY = [
 db.once('open', async () => {
   try {
     await Category.insertMany(SEED_CATEGORY)
+    console.log('done')
   } catch (err) {
     console.log(err)
   } finally {
